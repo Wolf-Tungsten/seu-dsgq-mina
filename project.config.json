@@ -2,10 +2,10 @@
 	"miniprogramRoot": "miniprogram/dist",
 	"cloudfunctionRoot": "cloudfunctions/",
 	"setting": {
-		"urlCheck": true,
-		"es6": true,
+		"urlCheck": false,
+		"es6": false,
 		"postcss": true,
-		"minified": true,
+		"minified": false,
 		"newFeature": true
 	},
 	"appid": "wx3f1edc19ad8c698f",
