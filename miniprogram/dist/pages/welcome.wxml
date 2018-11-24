@@ -1,0 +1,13 @@
+
+<view class="welcome-page">
+  <view class="top">
+    <image class="title" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/title.png" mode="aspectFit"/>
+    <view class="button">
+      <image src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/welcome-button.png" mode="aspectFit"/>
+    </view>
+  </view>
+  <view class="bottom">
+    <image class="info" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/info.png" mode="aspectFit"/>
+    <image class="pic" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/bottom.png" mode="aspectFit"/>
+  </view>
+</view>
