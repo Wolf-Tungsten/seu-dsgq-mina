@@ -18,7 +18,9 @@ export default class extends wepy.app {
   config = {
     pages: [
       'pages/welcome',
-      'pages/auth'
+      'pages/auth',
+      'pages/rule',
+      'pages/paper'
     ],
     window: {
       backgroundTextStyle: 'light',

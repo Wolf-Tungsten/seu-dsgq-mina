@@ -1,0 +1,21 @@
+.rule-page {
+  position: fixed;
+  left: 0;
+  width: 750rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.rule-page .title {
+  width: 650rpx;
+  height: 200rpx;
+}
+.rule-page .text {
+  margin: 10rpx 70rpx;
+  text-indent: 2em;
+}
+.rule-page .button {
+  width: 514rpx;
+  height: 94rpx;
+  margin-top: 50rpx;
+}

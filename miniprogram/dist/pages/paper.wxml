@@ -1,0 +1,18 @@
+
+<view  wx:if="{{ready}}" style="position:fixed">
+  <view class="paper-page">
+    <text class="timer">{{remainTimeText}} </text>
+    <text class="timer-hint">剩余时间</text>
+    <text class="question">{{multiSelect}}{{quiz[current].question}}</text>
+    <text bindtap="check" data-wpycheck-a="A" class="{{!checkA ? 'option' : ''}} {{checkA ? 'option-selected' : ''}}">A.{{quiz[current].optionA}}</text>
+    <text bindtap="check" data-wpycheck-a="B" class="{{!checkB ? 'option' : ''}} {{checkB ? 'option-selected' : ''}}">B.{{quiz[current].optionB}}</text>
+    <text wx:if="{{quiz[current].optionC}}" bindtap="check" data-wpycheck-a="C" class="{{!checkC ? 'option' : ''}} {{checkC ? 'option-selected' : ''}}">C.{{quiz[current].optionC}}</text>
+    <text wx:if="{{quiz[current].optionD}}" bindtap="check" data-wpycheck-a="D" class="{{!checkD ? 'option' : ''}} {{checkD ? 'option-selected' : ''}}">D.{{quiz[current].optionD}}</text>
+    <view class="button-box">
+      <image wx:if="{{hasPrev}}" bindtap="prev" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/paper-pre.png" mode="aspectFit"/>
+      <image wx:if="{{hasNext}}" bindtap="next" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/paper-next.png" mode="aspectFit"/>
+    </view>
+    <image class="submit" wx:if="{{canSubmit}}" bindtap="next" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/paper-submit.png" mode="aspectFit"/>
+    <image class="background" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/paper-bottom.png" mode="aspectFit"/>
+  </view>
+</view>

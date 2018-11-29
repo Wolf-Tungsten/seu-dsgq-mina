@@ -33,8 +33,13 @@ exports.main = async (event, context) => {
     });
 
     quizList = await Promise.all(quizList)
-
-    return quizList.map(k => {
+    let finalList = []
+    quizList.forEach(k => {
+        if (k.data && k.data[0]) {
+            finalList.push(k)
+        }
+    })
+    return finalList.map(k => {
         return k.data[0]
     })
 }

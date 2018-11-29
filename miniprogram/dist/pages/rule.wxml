@@ -1,0 +1,7 @@
+
+<view class="rule-page">
+  <image class="title" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/rule-top.png" mode="aspectFit"/>
+  <text class="text">没有共产党就没有新中国，没有共产党就没有新中国，共产党，辛劳为民族，共产党他一心救中国，他指给了人民解放的道路，他领导中国走向光明，他坚持了抗战八年多，他改善了人民生活，他建设了敌后根据地，</text>
+  <text class="text">没有共产党就没有新中国，没有共产党就没有新中国，共产党，辛劳为民族，共产党他一心救中国，他指给了人民解放的道路，他领导中国走向光明，他坚持了抗战八年多，他改善了人民生活，他建设了敌后根据地，</text>
+  <image class="button" bindtap="start" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/rule-button.png" mode="aspectFit"/>
+</view>

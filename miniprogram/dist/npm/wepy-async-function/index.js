@@ -12,7 +12,7 @@ var g = require('./global.js');
 
 if (!g.Promise) {
   // IOS 10.0.1 may cause IOS crash.
-  g.Promise = require('./../promise-polyfill/promise.js');
+  g.Promise = require('./../promise-polyfill/lib/index.js');
 }
 if (!g.regeneratorRuntime) {
   g.regeneratorRuntime = require('./../regenerator-runtime/runtime.js');

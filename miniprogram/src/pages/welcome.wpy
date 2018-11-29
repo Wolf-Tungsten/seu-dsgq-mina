@@ -80,6 +80,7 @@
           this.$navigate('./auth')
         } else {
           console.log('身份认证成功')
+          this.$redirect('./rule')
         }
 
       }

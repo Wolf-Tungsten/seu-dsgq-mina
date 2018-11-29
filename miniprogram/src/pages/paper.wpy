@@ -1,0 +1,222 @@
+<style lang="less">
+  .paper-page {
+    position: fixed;
+    top:0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .background{
+        position:fixed;
+        right: 0;
+        bottom: 0;
+        height: 300rpx;
+        z-index: -1;
+        opacity:0.4;
+    }
+    .timer {
+        color:#CB2428;
+        font-size: 70rpx;
+        font-weight: bold;
+    }
+    .timer-hint{
+        color: #888;
+        font-size: 30rpx;
+    }
+    .question{
+        margin: 40rpx;
+        border-radius: 10rpx;
+        background: #FFFDCD;
+        padding: 40rpx;
+        font-size: 30rpx;
+        align-self: stretch;
+    }
+    .option{
+        font-size: 30rpx;
+        padding: 20rpx;
+        margin: 10rpx 40rpx;
+        background: #F6F6F6;
+        align-self: stretch;
+  
+    }
+    .option-selected{
+        font-size: 30rpx;
+        padding: 20rpx;
+        margin: 10rpx 40rpx;
+        background: #CB2428;
+        color: #FFF;
+        font-weight: bold;
+        align-self: stretch;
+    }
+    .button-box{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-self: stretch;
+        image{
+            width:300rpx;
+            height: 100rpx;
+            margin: 10rpx 40rpx;
+        }
+    }
+    .submit{
+        margin: 10rpx;
+        align-self: center;
+        width: 670rpx;
+        height: 120rpx;
+    }
+  }
+</style>
+<template lang="pug">
+  view(wx:if="{{ready}}" style="position:fixed")
+    view.paper-page
+        text.timer {{remainTimeText}} 
+        text.timer-hint 剩余时间
+        text.question {{multiSelect}}{{quiz[current].question}}
+        text(@tap="check('A')" :class="{option:!checkA, option-selected:checkA}") A.{{quiz[current].optionA}}
+        text(@tap="check('B')" :class="{option:!checkB, option-selected:checkB}") B.{{quiz[current].optionB}}
+        text(wx:if="{{quiz[current].optionC}}" @tap="check('C')" :class="{option:!checkC, option-selected:checkC}") C.{{quiz[current].optionC}}
+        text(wx:if="{{quiz[current].optionD}}" @tap="check('D')" :class="{option:!checkD, option-selected:checkD}") D.{{quiz[current].optionD}}
+        view.button-box
+            image(wx:if="{{hasPrev}}" @tap="prev" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/paper-pre.png" mode="aspectFit")
+            image(wx:if="{{hasNext}}" @tap="next" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/paper-next.png" mode="aspectFit")
+        image.submit(wx:if="{{canSubmit}}" @tap="next" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/paper-submit.png" mode="aspectFit")
+        image.background(src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/paper-bottom.png" mode="aspectFit")
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '东南大学党史国情知识竞赛'
+    }
+    components = {
+    }
+
+    data = {
+        quiz:[],
+        ready:false,
+        current:0,
+        remainTime: 180,
+        remainTimeText:'03:00',
+        checkA:false,
+        checkB:false,
+        checkC:false,
+        checkD:false,
+        hasNext: true,
+        hasPrev: false
+    }
+
+    computed = {
+        multiSelect(){
+            if ( this.quiz && this.quiz[this.current] && this.quiz[this.current].answer.length > 1) {
+                return '（多选）'
+            } else {
+                return '（单选）'
+            }
+        },
+        canSubmit(){
+            let flag = true
+            this.quiz.forEach(k => {
+                flag = flag && k.checked
+            })
+            return flag
+        }
+    }
+
+    methods = {
+        check(option){
+            console.log(option)
+            if (this.quiz[this.current].answer.length > 1) {
+                if (this.quiz[this.current][`check${option}`]) {
+                    this.quiz[this.current][`check${option}`] = false
+                    this[`check${option}`] = false
+                } else {
+                    this.quiz[this.current][`check${option}`] = true
+                    this[`check${option}`] = true
+                }
+            } else {
+                ;['A', 'B', 'C', 'D'].forEach( k => {
+                    this.quiz[this.current][`check${k}`] = false
+                    this[`check${k}`] = false
+                });
+                this.quiz[this.current][`check${option}`] = true
+                this[`check${option}`] = true
+            }
+            this.quiz[this.current].checked = true
+        },
+        next() {
+            if (this.current < this.quiz.length) {
+                this.current = this.current + 1
+                this.checkA = this.quiz[this.current].checkA 
+                this.checkB = this.quiz[this.current].checkB
+                this.checkC = this.quiz[this.current].checkC 
+                this.checkD = this.quiz[this.current].checkD
+                this.hasPrev = true
+                this.hasNext = true
+            }
+             
+            if (this.current == this.quiz.length - 1) {
+                this.hasNext = false
+            }
+            this.$apply()
+        },
+        prev() {
+            if (this.current > 0) {
+                this.current = this.current - 1
+                this.checkA = this.quiz[this.current].checkA 
+                this.checkB = this.quiz[this.current].checkB
+                this.checkC = this.quiz[this.current].checkC 
+                this.checkD = this.quiz[this.current].checkD
+                this.hasPrev = true
+                this.hasNext = true
+            }
+             
+            if (this.current == 0) {
+                this.hasPrev = false
+            }
+            this.$apply()
+        }
+    }
+
+    events = {
+    }
+
+    onLoad() {
+        wx.showLoading()
+        wx.cloud.callFunction({
+            name:'getQuiz'
+        }).then((res)=>{
+            wx.hideLoading()
+            console.log(res)
+            this.quiz = res.result
+            this.$apply()
+            this.quiz.forEach(k=>{
+                k.checkA = false
+                k.checkB = false
+                k.checkC = false
+                k.checkD = false
+                k.checked = false
+            })
+            this.ready = true;
+            this.$apply()
+            this.timer = setInterval(() => {
+                this.remainTime = this.remainTime - 1
+                let minute = Math.floor(this.remainTime / 60)
+                let second = Math.floor(this.remainTime % 60)
+                this.remainTimeText = `${minute < 10 ? '0' : ''}${minute}:${second < 10?'0':''}${second}`
+                if (this.remainTime <= 0) {
+                    console.log('时间到了') //TODO
+                    this.remainTimeText = '时间到！'
+                    clearInterval(this.timer)
+                }
+                this.$apply()
+            }, 1000);
+        })
+
+    }
+    onUnload(){
+        clearInterval(this.timer)
+    }
+  }
+</script>

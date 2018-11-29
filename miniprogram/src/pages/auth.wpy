@@ -92,6 +92,9 @@
                     icon:'none',
                     title:result.result.reason
                 })
+            } else {
+                wx.setStorage({key:"name", data:result.result.result.name})
+                this.$navigate('./rule')
             }
         },
         bindCardnum(e) {
