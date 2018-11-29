@@ -1,0 +1,12 @@
+
+<view class="welcome-page">
+  <view class="top">
+    <image class="title" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/auth-title.png" mode="aspectFit"/>
+    <input class="input" bindinput="bindCardnum" type="number" placeholder="一卡通号" placeholder-style="font-size:40rpx; line-height:40rpx; color:#888; text-align:center; font-weight:bold;"/>
+    <input class="input" bindinput="bindPassword" confirm-type="done" password="true" placeholder="统一身份认证密码" placeholder-style="font-size:40rpx; line-height:20rpx; color:#888;text-align:center; font-weight:bold;"/>
+    <image class="button" bindtap="auth" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/auth-button.png" mode="aspectFit"/>
+  </view>
+  <view class="bottom">
+    <image class="info" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/auth-bottom.png" mode="aspectFit"/>
+  </view>
+</view>

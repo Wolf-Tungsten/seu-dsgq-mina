@@ -1,0 +1,40 @@
+.welcome-page .top {
+  position: fixed;
+  left: 0;
+  width: 750rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.welcome-page .top .title {
+  width: 650rpx;
+  height: 300rpx;
+  margin-top: 30rpx;
+  margin-bottom: 50rpx;
+}
+.welcome-page .top .input {
+  border: solid 7rpx #C4C4C4;
+  width: 500rpx;
+  height: 80rpx;
+  margin-top: 40rpx;
+  text-align: center;
+  font-size: 40rpx;
+  font-weight: bold;
+}
+.welcome-page .top .button {
+  width: 514rpx;
+  height: 94rpx;
+  margin-top: 40rpx;
+}
+.welcome-page .bottom {
+  position: fixed;
+  height: 150rpx;
+  bottom: 0rpx;
+  width: 750rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.welcome-page .bottom .info {
+  width: 500rpx;
+}

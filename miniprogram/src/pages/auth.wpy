@@ -1,0 +1,111 @@
+<style lang="less">
+  .welcome-page {
+    .top{
+      position: fixed;
+      left: 0;
+      width: 750rpx;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .title{
+        width: 650rpx;
+        height: 300rpx;
+        margin-top:30rpx;
+        margin-bottom: 50rpx;
+      }
+      .input{
+          border: solid 7rpx #C4C4C4;
+          width: 500rpx;
+          height: 80rpx;
+          margin-top: 40rpx;
+          text-align:center;
+          font-size: 40rpx;
+          font-weight: bold;
+
+      }
+      .button{
+        
+        width: 514rpx;
+        height: 94rpx;
+        margin-top: 40rpx;
+        
+      }
+    }
+    .bottom{
+      position: fixed;
+      height: 150rpx;
+      bottom: 0rpx;
+      width: 750rpx;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .info{
+        width:500rpx;
+      }
+    }
+  }
+</style>
+<template lang="pug">
+  view.welcome-page
+    view.top
+      image.title(src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/auth-title.png" mode="aspectFit")
+      input.input(bindinput="bindCardnum" type="number" placeholder="一卡通号" placeholder-style="font-size:40rpx; line-height:40rpx; color:#888; text-align:center; font-weight:bold;")
+      input.input(bindinput="bindPassword" confirm-type="done" password="true" placeholder="统一身份认证密码"  placeholder-style="font-size:40rpx; line-height:20rpx; color:#888;text-align:center; font-weight:bold;")
+      image.button(@tap="auth" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/auth-button.png" mode="aspectFit")
+    view.bottom
+      image.info(src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/auth-bottom.png" mode="aspectFit")
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '东南大学党史国情知识竞赛'
+    }
+    components = {
+    }
+
+    data = {
+        cardnum:'',
+        password:''
+    }
+
+    computed = {
+    }
+
+    methods = {
+        async auth() {
+            wx.showLoading()
+            let result = await wx.cloud.callFunction({
+                name:'idsAuth',
+                data:{
+                    cardnum:this.cardnum,
+                    password:this.password
+                }
+            })
+            wx.hideLoading()
+            console.log(result)
+            if(!result.result.success){
+                // 身份认证出现问题
+                wx.showToast({
+                    icon:'none',
+                    title:result.result.reason
+                })
+            }
+        },
+        bindCardnum(e) {
+            this.cardnum = e.detail.value
+        },
+        bindPassword(e) {
+            this.password = e.detail.value
+        }
+    }
+
+    events = {
+    }
+
+    onLoad() {
+    }
+  }
+</script>
