@@ -1,7 +1,6 @@
 <style lang="less">
   .paper-page {
-    position: fixed;
-    top:0;
+    width: 750rpx;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,7 +8,8 @@
         position:fixed;
         right: 0;
         bottom: 0;
-        height: 300rpx;
+        width:750rpx;
+        height: 346rpx;
         z-index: -1;
         opacity:0.4;
     }
@@ -67,7 +67,7 @@
   }
 </style>
 <template lang="pug">
-  view(wx:if="{{ready}}" style="position:fixed")
+  view(wx:if="{{ready}}")
     view.paper-page
         text.timer {{remainTimeText}} 
         text.timer-hint 剩余时间
@@ -79,7 +79,7 @@
         view.button-box
             image(wx:if="{{hasPrev}}" @tap="prev" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/paper-pre.png" mode="aspectFit")
             image(wx:if="{{hasNext}}" @tap="next" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/paper-next.png" mode="aspectFit")
-        image.submit(wx:if="{{canSubmit}}" @tap="next" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/paper-submit.png" mode="aspectFit")
+        image.submit(wx:if="{{canSubmit}}" @tap="submit" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/paper-submit.png" mode="aspectFit")
         image.background(src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/paper-bottom.png" mode="aspectFit")
 </template>
 
@@ -104,7 +104,8 @@
         checkC:false,
         checkD:false,
         hasNext: true,
-        hasPrev: false
+        hasPrev: false,
+        submit: false
     }
 
     computed = {
@@ -176,6 +177,29 @@
                 this.hasPrev = false
             }
             this.$apply()
+        },
+        async submit(){
+            if(!this.submit){
+                console.log('提交')
+                this.submit = true
+                this.$apply()
+                wx.showLoading()
+                console.log(JSON.stringify(this.quiz))
+                let result = await wx.cloud.callFunction({
+                    name:'submit',
+                    data:{
+                        quiz:this.quiz
+                    }
+                })
+                wx.hideLoading()
+                if (result.result.success) {
+                    console.log('提交成功！')
+                } else {
+                    console.log('提交无效')
+                }
+            } else {
+                console.log('不能重复提交')
+            }
         }
     }
 

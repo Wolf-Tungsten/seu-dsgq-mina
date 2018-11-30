@@ -80,7 +80,15 @@
           this.$navigate('./auth')
         } else {
           console.log('身份认证成功')
-          this.$redirect('./rule')
+          let submitResult = await wx.cloud.callFunction({
+            name:'getScore'
+          })
+          console.log(submitResult)
+          if (!submitResult.result.submit) {
+            this.$redirect('./rule')
+          } else {
+            console.log('已提交，不可重复答题')
+          }
         }
 
       }

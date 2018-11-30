@@ -5,10 +5,10 @@ cloud.init()
 const db = cloud.database()
 
 // 配置
-const GQ_EASY = 10
-const GQ_DIFFICULT = 5
-const DS_EASY = 10
-const DS_DIFFICULT = 5
+const GQ_EASY = 7
+const GQ_DIFFICULT = 3
+const DS_EASY = 7
+const DS_DIFFICULT = 3
 
 // 云函数入口函数
 exports.main = async (event, context) => {
