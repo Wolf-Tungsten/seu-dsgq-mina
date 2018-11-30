@@ -87,7 +87,7 @@
           if (!submitResult.result.submit) {
             this.$redirect('./rule')
           } else {
-            console.log('已提交，不可重复答题')
+            wx.setStorageSync({key:'result', data:submitResult.result})
           }
         }
 

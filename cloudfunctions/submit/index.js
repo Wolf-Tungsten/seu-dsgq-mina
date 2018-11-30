@@ -23,8 +23,11 @@ exports.main = async (event, context) => {
       }
     )
     userAnswer = userAnswer.join('')
+    k.userAnswer = userAnswer
+    k.correct = false
     if (userAnswer === k.answer) {
       got += single
+      k.correct = true
     }
     amount += single
   });
