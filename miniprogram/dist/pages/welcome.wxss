@@ -9,12 +9,16 @@
 .welcome-page .top .title {
   width: 550rpx;
   height: 300rpx;
-  margin-top: 50rpx;
 }
 .welcome-page .top .button image {
   width: 300rpx;
   height: 150rpx;
-  margin-top: 20rpx;
+  margin-top: 40rpx;
+}
+@media (max-height: 500px) {
+  .welcome-page .top .button image {
+    margin-top: 20rpx;
+  }
 }
 .welcome-page .bottom {
   position: fixed;
@@ -25,9 +29,20 @@
   align-items: center;
 }
 .welcome-page .bottom .info {
-  height: 250rpx;
+  height: 300rpx;
+}
+@media (max-height: 500px) {
+  .welcome-page .bottom .info {
+    margin-bottom: 200rpx;
+  }
 }
 .welcome-page .bottom .pic {
   width: 750rpx;
   height: 400rpx;
+  align-self: flex-end;
+}
+@media (max-height: 500px) {
+  .welcome-page .bottom .pic {
+    display: none;
+  }
 }

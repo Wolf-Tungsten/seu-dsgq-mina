@@ -10,13 +10,15 @@
       .title{
         width: 550rpx;
         height: 300rpx;
-        margin-top:50rpx;
       }
       .button{
         image{
         width: 300rpx;
         height: 150rpx;
-        margin-top: 20rpx;
+        margin-top:40rpx;
+        @media (max-height: 500px) {
+           margin-top: 20rpx;
+        }
         }
       }
     }
@@ -28,11 +30,19 @@
       flex-direction: column;
       align-items: center;
       .info{
-        height: 250rpx;
+        height: 300rpx;
+        @media (max-height: 500px) {
+           margin-bottom: 200rpx;
+        }
       }
+      
       .pic{
         width: 750rpx;
         height: 400rpx;
+        align-self: flex-end;
+        @media (max-height: 500px) {
+           display: none;
+        }
       }
     }
   }

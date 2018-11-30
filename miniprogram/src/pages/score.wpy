@@ -11,6 +11,10 @@
           width:350rpx;
           height:100rpx;
           margin-top:80rpx;
+        @media (max-height: 500px) {
+           margin-top:10rpx;
+           display: none;
+        }
       }
       .button{
           margin-top:30rpx;

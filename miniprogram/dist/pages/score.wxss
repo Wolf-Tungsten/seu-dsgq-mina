@@ -12,6 +12,12 @@
   height: 100rpx;
   margin-top: 80rpx;
 }
+@media (max-height: 500px) {
+  .score-page .title {
+    margin-top: 10rpx;
+    display: none;
+  }
+}
 .score-page .button {
   margin-top: 30rpx;
   width: 350rpx;
