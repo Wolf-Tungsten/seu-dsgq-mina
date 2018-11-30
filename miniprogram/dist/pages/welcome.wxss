@@ -15,10 +15,8 @@
   height: 150rpx;
   margin-top: 40rpx;
 }
-@media (max-height: 500px) {
-  .welcome-page .top .button image {
-    margin-top: 20rpx;
-  }
+.welcome-page .top .info {
+  height: 300rpx;
 }
 .welcome-page .bottom {
   position: fixed;
@@ -28,21 +26,10 @@
   flex-direction: column;
   align-items: center;
 }
-.welcome-page .bottom .info {
-  height: 300rpx;
-}
-@media (max-height: 500px) {
-  .welcome-page .bottom .info {
-    margin-bottom: 200rpx;
-  }
-}
 .welcome-page .bottom .pic {
   width: 750rpx;
   height: 400rpx;
   align-self: flex-end;
-}
-@media (max-height: 500px) {
-  .welcome-page .bottom .pic {
-    display: none;
-  }
+  opacity: 0.4;
+  z-index: -1;
 }

@@ -71,7 +71,7 @@
     view.paper-page
         text.timer {{remainTimeText}} 
         text.timer-hint 剩余时间
-        text.question {{multiSelect}}{{quiz[current].question}}
+        text.question ({{current+1}}/{{quiz.length}}){{multiSelect}}{{quiz[current].question}}
         text(@tap="check('A')" :class="{option:!checkA, option-selected:checkA}") A.{{quiz[current].optionA}}
         text(@tap="check('B')" :class="{option:!checkB, option-selected:checkB}") B.{{quiz[current].optionB}}
         text(wx:if="{{quiz[current].optionC}}" @tap="check('C')" :class="{option:!checkC, option-selected:checkC}") C.{{quiz[current].optionC}}

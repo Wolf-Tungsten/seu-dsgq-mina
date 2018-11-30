@@ -16,10 +16,10 @@
         width: 300rpx;
         height: 150rpx;
         margin-top:40rpx;
-        @media (max-height: 500px) {
-           margin-top: 20rpx;
         }
-        }
+      }
+      .info{
+        height: 300rpx;
       }
     }
     .bottom{
@@ -29,20 +29,14 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      .info{
-        height: 300rpx;
-        @media (max-height: 500px) {
-           margin-bottom: 200rpx;
-        }
-      }
+
       
       .pic{
         width: 750rpx;
         height: 400rpx;
         align-self: flex-end;
-        @media (max-height: 500px) {
-           display: none;
-        }
+        opacity: 0.4;
+        z-index:-1;
       }
     }
   }
@@ -53,8 +47,8 @@
       image.title(src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/title.png" mode="aspectFit")
       view.button(@tap="enter")
         image(src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/welcome-button.png" mode="aspectFit")
-    view.bottom
       image.info(src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/info.png" mode="aspectFit")
+    view.bottom
       image.pic(src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/bottom.png" mode="aspectFit")
 </template>
 

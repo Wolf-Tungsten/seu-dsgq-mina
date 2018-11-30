@@ -3,7 +3,7 @@
   <view class="paper-page">
     <text class="timer">{{remainTimeText}} </text>
     <text class="timer-hint">剩余时间</text>
-    <text class="question">{{multiSelect}}{{quiz[current].question}}</text>
+    <text class="question">({{current+1}}/{{quiz.length}}){{multiSelect}}{{quiz[current].question}}</text>
     <text bindtap="check" data-wpycheck-a="A" class="{{!checkA ? 'option' : ''}} {{checkA ? 'option-selected' : ''}}">A.{{quiz[current].optionA}}</text>
     <text bindtap="check" data-wpycheck-a="B" class="{{!checkB ? 'option' : ''}} {{checkB ? 'option-selected' : ''}}">B.{{quiz[current].optionB}}</text>
     <text wx:if="{{quiz[current].optionC}}" bindtap="check" data-wpycheck-a="C" class="{{!checkC ? 'option' : ''}} {{checkC ? 'option-selected' : ''}}">C.{{quiz[current].optionC}}</text>
