@@ -20,7 +20,9 @@ export default class extends wepy.app {
       'pages/welcome',
       'pages/auth',
       'pages/rule',
-      'pages/paper'
+      'pages/paper',
+      'pages/score',
+      'pages/detail'
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -41,6 +43,10 @@ export default class extends wepy.app {
 
   onLaunch() {
    wx.cloud.init()
+  }
+
+  onShow() {
+    wx.reLaunch({url:'/pages/welcome'})
   }
 
   sleep (s) {

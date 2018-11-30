@@ -12,7 +12,7 @@
 }
 .rule-page .text {
   margin: 10rpx 70rpx;
-  text-indent: 2em;
+  align-self: stretch;
 }
 .rule-page .button {
   width: 514rpx;

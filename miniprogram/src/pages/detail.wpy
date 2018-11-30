@@ -1,0 +1,105 @@
+<style lang="less">
+  .detail-page{
+      width: 750rpx;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      margin-bottom: 40rpx;
+      .background{
+          position: fixed;
+          width: 750rpx;
+          height: 656rpx;
+          right: -20rpx;
+          bottom: -20rpx;
+          z-index: -1;
+      }
+    .correct{
+        padding: 20rpx;
+        margin-top: 20rpx;
+        font-size: 30rpx;
+        font-weight: bolder;
+    }
+    .panel{
+        margin: 20rpx 40rpx;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        .question{
+            border-radius: 10rpx;
+            background: #FFFDCD;
+            padding: 40rpx;
+            font-size: 30rpx;
+            margin-top:40rpx;
+        }
+        .answer{
+            font-size: 30rpx;
+            padding: 20rpx;
+            margin: 20rpx 0 0 0;
+            background: #F6F6F6;
+        }
+        .check-answer{
+            background: #CB2428;
+            color: #FFF;
+            font-weight: bold;
+            margin:20rpx 0 0 0;
+        }
+        .correct-answer{
+            background: #219653;
+            color: #FFF;
+            font-weight: bold;
+            margin:20rpx 0 0 0;
+        }
+    }
+  }
+</style>
+<template lang="pug">
+  view.detail-page
+    image.background(src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/detail.png" mode="aspectFit")
+    repeat(for="{{quiz}}" item="item")
+        view.panel
+            text.question 【{{item.answer.length > 1 ? '多选' : '单选'}}】{{item.question}}
+            text.correct 回答{{item.correct ? "正确" : "错误"}}：
+            text.answer(:class="{check-answer:item.checkA,correct-answer:item.answerA}") A.{{item.optionA}}
+            text.answer(:class="{check-answer:item.checkB,correct-answer:item.answerB}") B.{{item.optionB}}
+            text.answer(:class="{check-answer:item.checkC,correct-answer:item.answerC}") C.{{item.optionC}}
+            text.answer(:class="{check-answer:item.checkD,correct-answer:item.answerD}") D.{{item.optionD}}
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '东南大学党史国情知识竞赛'
+    }
+    components = {
+    }
+
+    data = {
+        quiz:[]
+    }
+
+    computed = {
+    }
+
+    methods = {
+    }
+
+    events = {
+    }
+
+    onLoad() {
+        let record = wx.getStorageSync('result')
+        this.quiz = record.record.quiz
+        this.quiz.forEach(k => {
+            ;['A', 'B', 'C', 'D'].forEach((option)=>{
+                if (k.answer.indexOf(option) != -1) {
+                    k[`answer${option}`] = true
+                }
+            })
+        })
+        console.log(record)
+        this.$apply()
+    }
+  }
+</script>

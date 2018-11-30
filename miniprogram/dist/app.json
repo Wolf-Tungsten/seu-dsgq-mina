@@ -1,1 +1,1 @@
-{"pages":["pages/welcome","pages/auth","pages/rule","pages/paper"],"window":{"backgroundTextStyle":"light","navigationBarBackgroundColor":"#fff","navigationBarTitleText":"WeChat","navigationBarTextStyle":"black"}}
+{"pages":["pages/welcome","pages/auth","pages/rule","pages/paper","pages/score","pages/detail"],"window":{"backgroundTextStyle":"light","navigationBarBackgroundColor":"#fff","navigationBarTitleText":"WeChat","navigationBarTextStyle":"black"}}

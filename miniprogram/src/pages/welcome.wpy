@@ -87,7 +87,8 @@
           if (!submitResult.result.submit) {
             this.$redirect('./rule')
           } else {
-            wx.setStorageSync({key:'result', data:submitResult.result})
+            wx.setStorageSync('result', submitResult.result)
+            this.$navigate('./score')
           }
         }
 

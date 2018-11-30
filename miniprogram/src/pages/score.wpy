@@ -1,0 +1,92 @@
+<style lang="less">
+  .score-page{
+      position: fixed;
+      left:0;
+      top:0;
+      width: 750rpx;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .title{
+          width:350rpx;
+          height:100rpx;
+          margin-top:80rpx;
+      }
+      .button{
+          margin-top:30rpx;
+          width:350rpx;
+          height:100rpx;
+      }
+      .background{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right:0;
+        width: 750rpx;
+        height: 913rpx;
+        image {  
+            position: absolute;
+            width: 750rpx;
+            height: 913rpx;
+            bottom: 0;
+            left: 0;
+            right:0;
+        }
+        .score{
+            position: absolute;
+            left: 375rpx;
+            top: 120rpx;
+            font-size:100rpx;
+            color: #CB2428;
+            font-weight: bold;
+            transform: translateX(-50%);
+        }
+      }
+  }
+</style>
+<template lang="pug">
+  view.score-page
+    image.title(src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/score-title.png" mode="aspectFit")
+    image.button(@tap="start" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/score-button.png" mode="aspectFit")
+    view.background
+        image(bindload="imageLoad" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/score-bottom.png" mode="aspectFit")
+        text.score(wx:if="{{displayScore}}") {{score}}
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '东南大学党史国情知识竞赛'
+    }
+    components = {
+    }
+
+    data = {
+        score:'--',
+        displayScore:false
+    }
+
+    computed = {
+    }
+
+    methods = {
+        start() {
+            this.$navigate('./detail')
+        },
+        imageLoad() {
+            this.displayScore = true
+        }
+    }
+
+    events = {
+    }
+
+    onLoad() {
+        let record = wx.getStorageSync('result')
+        this.score = record.record.score
+        this.$apply()
+    }
+  }
+</script>

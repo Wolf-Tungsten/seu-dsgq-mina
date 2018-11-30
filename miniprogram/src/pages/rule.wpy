@@ -13,7 +13,8 @@
       }
       .text{
           margin: 10rpx 70rpx;
-          text-indent: 2em;
+          align-self: stretch;
+
       }
 
       .button{
@@ -28,8 +29,13 @@
 <template lang="pug">
   view.rule-page
     image.title(src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/rule-top.png" mode="aspectFit")
-    text.text 没有共产党就没有新中国，没有共产党就没有新中国，共产党，辛劳为民族，共产党他一心救中国，他指给了人民解放的道路，他领导中国走向光明，他坚持了抗战八年多，他改善了人民生活，他建设了敌后根据地，
-    text.text 没有共产党就没有新中国，没有共产党就没有新中国，共产党，辛劳为民族，共产党他一心救中国，他指给了人民解放的道路，他领导中国走向光明，他坚持了抗战八年多，他改善了人民生活，他建设了敌后根据地，
+    text.text 1.每人只有一次答题机会
+    text.text 2.题目包含多选选择题和单项选择题
+    text.text 3.答题过程中不得离开小程序，否则结果作废
+    text.text 4.在时间限制内需要完成所有题目方可提交
+    text.text 5.答题时间限制为10分钟
+    text.text 6.计时结束试卷自动提交
+    text.text 7.点击“现在开始！”按钮即开始计时
     image.button(@tap="start" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/rule-button.png" mode="aspectFit")
 </template>
 
