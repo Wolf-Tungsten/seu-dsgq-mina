@@ -12,6 +12,7 @@
         height: 300rpx;
       }
       .button{
+        border: none;
         image{
         width: 300rpx;
         height: 150rpx;
@@ -45,7 +46,7 @@
   view.welcome-page
     view.top
       image.title(src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/title.png" mode="aspectFit")
-      view.button(@tap="enter")
+      button.button(@tap="enter" open-type="getUserInfo" plain="true")
         image(src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/welcome-button.png" mode="aspectFit")
       image.info(src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/info.png" mode="aspectFit")
     view.bottom

@@ -111,6 +111,13 @@
     }
 
     onLoad() {
+      wx.getSetting({
+          success(res) {
+          if (res.authSetting['scope.userInfo']) {
+            wx.getUserInfo()
+          }
+        }
+      })
     }
   }
 </script>

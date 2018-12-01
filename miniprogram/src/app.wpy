@@ -42,7 +42,10 @@ export default class extends wepy.app {
   }
 
   onLaunch() {
-   wx.cloud.init()
+   wx.cloud.init({
+      env: 'seu-dsgq-0',
+      traceUser: true
+  })
   }
 
   onShow() {

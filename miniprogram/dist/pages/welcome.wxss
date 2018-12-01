@@ -10,6 +10,9 @@
   width: 550rpx;
   height: 300rpx;
 }
+.welcome-page .top .button {
+  border: none;
+}
 .welcome-page .top .button image {
   width: 300rpx;
   height: 150rpx;
