@@ -94,7 +94,7 @@
                 })
             } else {
                 wx.setStorage({key:"name", data:result.result.result.name})
-                this.$navigate('./rule')
+                this.$redirect('./rule')
             }
         },
         bindCardnum(e) {
