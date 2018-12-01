@@ -188,7 +188,7 @@
                 console.log('提交')
                 this.submitted = true
                 this.$apply()
-                wx.showLoading()
+                wx.showLoading({title:"正在提交试卷"})
                 console.log(JSON.stringify(this.quiz))
                 let result = await wx.cloud.callFunction({
                     name:'submit',
@@ -199,9 +199,11 @@
                 wx.hideLoading()
                 if (result.result.success) {
                     console.log('提交成功！')
+                    wx.showLoading({title:"获取得分情况"})
                     let submitResult = await wx.cloud.callFunction({
                         name:'getScore'
                     })
+                    wx.hideLoading()
                     console.log(submitResult)
                     if (!submitResult.result.submit) {
                         this.$redirect('./rule')
@@ -220,7 +222,7 @@
     }
 
     onLoad() {
-        wx.showLoading()
+        wx.showLoading({title:"获取试题"})
         wx.cloud.callFunction({
             name:'getQuiz'
         }).then((res)=>{

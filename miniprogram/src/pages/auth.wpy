@@ -76,8 +76,7 @@
 
     methods = {
         async auth() {
-            wx.showLoading()
-
+            wx.showLoading({title:"正在认证"})
             let result = await wx.cloud.callFunction({
                 name:'idsAuth',
                 data:{
@@ -85,7 +84,6 @@
                     password:this.password
                 }
             })
-            
             wx.hideLoading()
             console.log(result)
             if(!result.result.success){

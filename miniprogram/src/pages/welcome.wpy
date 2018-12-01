@@ -58,7 +58,7 @@
 
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: '东南大学党史国情知识竞赛'
+      navigationBarTitleText: '党史国情知识竞赛'
     }
     components = {
     }
@@ -74,20 +74,34 @@
 
     methods = {
       async enter(){
-        wx.showLoading()
+        wx.showLoading({title:"获取竞赛状态"})
+        let checkTime = await wx.cloud.callFunction({
+          name:'timeControl'
+        })
+        wx.hideLoading()
+        if (checkTime.result.status === 'wait') {
+          wx.showModal({title:"提示",content:"答题尚未开始！"})
+          return
+        }
+        if (checkTime.result.status === 'end') {
+          wx.showModal({title:"提示",content:"答题已结束！"})
+          return
+        }
+        wx.showLoading({title:"核对身份信息"})
         let result = await wx.cloud.callFunction({
           name:'idsAuth'
         })
-        console.log(result)
         wx.hideLoading()
         if (!result.result.success && result.result.reason === 'unauthorized') {
           // 未进行账号绑定，跳转到auth页面
           this.$navigate('./auth')
         } else {
           console.log('身份认证成功')
+          wx.showLoading({title:"更新得分数据"})
           let submitResult = await wx.cloud.callFunction({
             name:'getScore'
           })
+          wx.hideLoading()
           console.log(submitResult)
           if (!submitResult.result.submit) {
             this.$redirect('./rule')
