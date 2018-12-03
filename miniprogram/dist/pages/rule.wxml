@@ -1,12 +1,13 @@
 
 <view class="rule-page">
   <image class="title" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/rule-top.png" mode="aspectFit"/>
-  <text class="text">1.每人只有一次答题机会</text>
-  <text class="text">2.题目包含多选选择题和单项选择题</text>
-  <text class="text">3.答题过程中不得离开小程序，否则结果作废</text>
-  <text class="text">4.在时间限制内需要完成所有题目方可提交</text>
-  <text class="text">5.答题时间限制为10分钟</text>
-  <text class="text">6.计时结束试卷自动提交</text>
-  <text class="text">7.点击“现在开始！”按钮即开始计时</text>
+  <text class="first">党员同志，欢迎参加党史国情知识竞赛！以下是答题规则，请仔细阅读！</text>
+  <text class="text">★ 每位同志只有一次答题机会，请珍惜</text>
+  <text class="text">★ 题目以单项选择题为主，少量多选题 </text>
+  <text class="text">★ 答题过程中请不要离开小程序，否则结果作废</text>
+  <text class="text">★ 在时间限制内需要完成所有题目方可提交</text>
+  <text class="text">★ 答题时间限制为10分钟</text>
+  <text class="text">★ 计时结束试卷自动提交</text>
+  <text class="text">★ 点击“现在开始！”按钮即开始计时</text>
   <image class="button" bindtap="start" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/rule-button.png" mode="aspectFit"/>
 </view>

@@ -61,7 +61,7 @@
 
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: '东南大学党史国情知识竞赛'
+      navigationBarTitleText: '身份认证'
     }
     components = {
     }

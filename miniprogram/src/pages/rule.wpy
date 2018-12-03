@@ -11,10 +11,20 @@
         width: 650rpx;
         height: 200rpx;
       }
+      .first{
+        margin: 10rpx 60rpx;
+        align-self: stretch;
+        font-size: 30rpx;
+        color:#333;
+        font-weight: bold;
+        margin-bottom: 40rpx;
+        text-indent: 2em;
+      }
       .text{
-          margin: 10rpx 70rpx;
-          align-self: stretch;
-
+        margin: 10rpx 60rpx;
+        align-self: stretch;
+        font-size: 30rpx;
+        color:#333;
       }
 
       .button{
@@ -29,13 +39,14 @@
 <template lang="pug">
   view.rule-page
     image.title(src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/rule-top.png" mode="aspectFit")
-    text.text 1.每人只有一次答题机会
-    text.text 2.题目包含多选选择题和单项选择题
-    text.text 3.答题过程中不得离开小程序，否则结果作废
-    text.text 4.在时间限制内需要完成所有题目方可提交
-    text.text 5.答题时间限制为10分钟
-    text.text 6.计时结束试卷自动提交
-    text.text 7.点击“现在开始！”按钮即开始计时
+    text.first 党员同志，欢迎参加党史国情知识竞赛！以下是答题规则，请仔细阅读！
+    text.text ★ 每位同志只有一次答题机会，请珍惜
+    text.text ★ 题目以单项选择题为主，少量多选题 
+    text.text ★ 答题过程中请不要离开小程序，否则结果作废
+    text.text ★ 在时间限制内需要完成所有题目方可提交
+    text.text ★ 答题时间限制为10分钟
+    text.text ★ 计时结束试卷自动提交
+    text.text ★ 点击“现在开始！”按钮即开始计时
     image.button(@tap="start" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/rule-button.png" mode="aspectFit")
 </template>
 
@@ -44,7 +55,7 @@
 
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: '东南大学党史国情知识竞赛'
+      navigationBarTitleText: '答题规则'
     }
     components = {
     }

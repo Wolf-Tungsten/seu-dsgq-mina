@@ -41,18 +41,19 @@
         .score{
             position: absolute;
             left: 375rpx;
-            top: 120rpx;
-            font-size:100rpx;
+            top: 200rpx;
+            font-size:30rpx;
             color: #CB2428;
             font-weight: bold;
-            transform: translateX(-50%);
+            transform: rotate(10deg) translateX(-40%) translateY(-40%);
+
         }
       }
   }
 </style>
 <template lang="pug">
   view.score-page
-    image.title(src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/score-title.png" mode="aspectFit")
+    image.title(src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/score-result.png" mode="aspectFit")
     image.button(@tap="start" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/score-button.png" mode="aspectFit")
     view.background
         image(bindload="imageLoad" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/score-bottom.png" mode="aspectFit")
@@ -64,7 +65,7 @@
 
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: '东南大学党史国情知识竞赛'
+      navigationBarTitleText: '答题结果'
     }
     components = {
     }
@@ -91,7 +92,18 @@
 
     onLoad() {
         let record = wx.getStorageSync('result')
-        this.score = record.record.score
+        let score = record.record.score
+        if (score >= 90) {
+            this.score = '优秀！哇，成绩斐然，向您致敬！'
+        } else if ( 80 <= score && score < 90) {
+            this.score = '良好，相当不容易啊，您的竞赛成绩超过了大部分党员同志！'
+        } else if ( 70 <= score && score < 80) {
+            this.score = '中等，还行吧，这个成绩也是不容易呢，继续加油！'
+        } else if ( 60 <= score && score < 70) {
+            this.score = '及格，作为党员，现在这个成绩不值得骄傲哦'
+        } else {
+            this.score = '需要引起足够重视啦！现在您相信党性修养不是一蹴而就的了吧，谦虚低调，努力学习吧！'
+        }
         this.$apply()
     }
   }

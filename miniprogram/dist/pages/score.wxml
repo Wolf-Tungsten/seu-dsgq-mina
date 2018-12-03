@@ -1,6 +1,6 @@
 
 <view class="score-page">
-  <image class="title" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/score-title.png" mode="aspectFit"/>
+  <image class="title" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/score-result.png" mode="aspectFit"/>
   <image class="button" bindtap="start" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/score-button.png" mode="aspectFit"/>
   <view class="background">
     <image bindload="imageLoad" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/score-bottom.png" mode="aspectFit"/>

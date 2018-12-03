@@ -70,7 +70,7 @@
 
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: '东南大学党史国情知识竞赛'
+      navigationBarTitleText: '具体答题结果'
     }
     components = {
     }

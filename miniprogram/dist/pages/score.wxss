@@ -44,9 +44,9 @@
 .score-page .background .score {
   position: absolute;
   left: 375rpx;
-  top: 120rpx;
-  font-size: 100rpx;
+  top: 200rpx;
+  font-size: 30rpx;
   color: #CB2428;
   font-weight: bold;
-  transform: translateX(-50%);
+  transform: rotate(10deg) translateX(-40%) translateY(-40%);
 }
