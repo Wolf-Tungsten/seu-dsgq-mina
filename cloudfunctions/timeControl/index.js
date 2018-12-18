@@ -7,6 +7,7 @@ cloud.init()
 // 云函数入口函数
 exports.main = async (event, context) => {
   let now = +moment()
+  now += 8 * 60 * 60 * 1000
   let startTime = +moment(process.env.startTime, 'YYYY-MM-DD hh:mm:ss')
   let endTime = +moment(process.env.endTime, 'YYYY-MM-DD hh:mm:ss')
   let periodName = process.env.periodName
@@ -23,6 +24,8 @@ exports.main = async (event, context) => {
     periodName,
     startTime,
     endTime,
-    now
+    now,
+    startTimeStr:process.env.startTime,
+    endTimeStr:process.env.endTime
   }
 }

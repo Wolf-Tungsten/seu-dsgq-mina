@@ -58,7 +58,7 @@ exports.main = async (event, context) => {
 
   // 执行到此处开始统一身份认证流程
   let infoResult
-  if (cardnum.startsWith('10') || cardnum.startsWith('22')) {
+  //if (cardnum.startsWith('10') || cardnum.startsWith('22')) {
     // 适用于教师登录
     try {
       // 优先使用东大 App (ids-mobile) 认证，这种认证成功率比老信息门户 ids3 高，但对某些外籍学生不适用
@@ -88,38 +88,45 @@ exports.main = async (event, context) => {
         }
       }
     }
-  } else {
-    let authResult = await axios.post("https://myseu.cn/ws3/auth", { cardnum, password, platform: "dsgq-mina" })
 
-    if (!authResult.data.success) {
-      // 统一身份认证失败
-      return {
-        success: false,
-        reason: authResult.data.reason
-      }
+    if (cardnum.startsWith('10') || cardnum.startsWith('22')) {
+      infoResult = {name:'教职员工', schoolnum:'未获取'}
+    } else {
+      infoResult = {name:'在校生', schoolnum:'未获取'}
     }
+  //} 
+  //else {
+    // let authResult = await axios.post("https://myseu.cn/ws3/auth", { cardnum, password, platform: "dsgq-mina" })
 
-    let token = authResult.data.result
+    // if (!authResult.data.success) {
+    //   // 统一身份认证失败
+    //   return {
+    //     success: false,
+    //     reason: authResult.data.reason
+    //   }
+    // }
 
-    infoResult = await axios.get("https://myseu.cn/ws3/api/user", { headers: { token } })
+    // let token = authResult.data.result
 
-    if (!infoResult.data.success) {
-      // 身份信息获取失败
-      return {
-        success: false,
-        reason: infoResult.data.reason
-      }
-    }
+    // infoResult = await axios.get("https://myseu.cn/ws3/api/user", { headers: { token } })
 
-    infoResult = infoResult.data.result
-  }
+    // if (!infoResult.data.success) {
+    //   // 身份信息获取失败
+    //   return {
+    //     success: false,
+    //     reason: infoResult.data.reason
+    //   }
+    // }
+
+    // infoResult = infoResult.data.result
+  //}
   await db.collection('auth').add({
     // data 字段表示需新增的 JSON 数据
     data: {
       openid,
       cardnum,
-      name: infoResult ? infoResult.name:'教职员工',
-      schoolnum:  infoResult ? infoResult.schoolnum:'教职员工'
+      name: infoResult.name,
+      schoolnum:  infoResult.schoolnum
     }
   })
 
@@ -128,8 +135,8 @@ exports.main = async (event, context) => {
     result: {
       openid,
       cardnum,
-      name: infoResult ? infoResult.name:'教职员工',
-      schoolnum:  infoResult ? infoResult.schoolnum:'教职员工'
+      name: infoResult.name,
+      schoolnum:  infoResult.schoolnum
     }
   }
 }
