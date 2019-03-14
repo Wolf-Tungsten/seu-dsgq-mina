@@ -27,7 +27,7 @@ let _axios = axios.create({
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
 
-  let { cardnum, password } = event
+  let { cardnum, name, identity } = event
   let openid = wxContext.OPENID
   let userInfo = await db.collection('auth').where({ openid }).get()
   if (userInfo && userInfo.data[0]) {
@@ -56,77 +56,14 @@ exports.main = async (event, context) => {
     }
   }
 
-  // 执行到此处开始统一身份认证流程
-  let infoResult
-  //if (cardnum.startsWith('10') || cardnum.startsWith('22')) {
-    // 适用于教师登录
-    try {
-      // 优先使用东大 App (ids-mobile) 认证，这种认证成功率比老信息门户 ids3 高，但对某些外籍学生不适用
-      let res = await axios.post(
-        'http://mobile4.seu.edu.cn/_ids_mobile/login18_9',
-        { username: cardnum, password }
-      )
-    } catch (e) {
-      // 当 ids-mobile 抛出 401，改用老门户 ids3 认证再次尝试
-      if (e.response && e.response.status === 401) {
-        await _axios.get('http://myold.seu.edu.cn/login.portal')
-        let res = await _axios.post('http://myold.seu.edu.cn/userPasswordValidate.portal', {
-          'Login.Token1': cardnum,
-          'Login.Token2': password
-        })
-        // 若老门户 ids3 认证仍失败，抛出 401
-        if (/用户不存在或密码错误/.test(res.data)) {
-          return {
-            success: false,
-            reason: '一卡通或密码错误'
-          }
-        }
-      } else {
-        return {
-          success: false,
-          reason: '身份认证失败'
-        }
-      }
-    }
-
-    if (cardnum.startsWith('10') || cardnum.startsWith('22')) {
-      infoResult = {name:'教职员工', schoolnum:'未获取'}
-    } else {
-      infoResult = {name:'在校生', schoolnum:'未获取'}
-    }
-  //} 
-  //else {
-    // let authResult = await axios.post("https://myseu.cn/ws3/auth", { cardnum, password, platform: "dsgq-mina" })
-
-    // if (!authResult.data.success) {
-    //   // 统一身份认证失败
-    //   return {
-    //     success: false,
-    //     reason: authResult.data.reason
-    //   }
-    // }
-
-    // let token = authResult.data.result
-
-    // infoResult = await axios.get("https://myseu.cn/ws3/api/user", { headers: { token } })
-
-    // if (!infoResult.data.success) {
-    //   // 身份信息获取失败
-    //   return {
-    //     success: false,
-    //     reason: infoResult.data.reason
-    //   }
-    // }
-
-    // infoResult = infoResult.data.result
-  //}
+  // 允许插入新记录，从统一身份认证小程序获取的信息
   await db.collection('auth').add({
     // data 字段表示需新增的 JSON 数据
     data: {
       openid,
       cardnum,
-      name: infoResult.name,
-      schoolnum:  infoResult.schoolnum
+      name,
+      identity
     }
   })
 
@@ -135,8 +72,8 @@ exports.main = async (event, context) => {
     result: {
       openid,
       cardnum,
-      name: infoResult.name,
-      schoolnum:  infoResult.schoolnum
+      name,
+      identity
     }
   }
 }

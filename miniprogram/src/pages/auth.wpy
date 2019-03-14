@@ -24,11 +24,10 @@
 
       }
       .button{
-        
         width: 514rpx;
         height: 94rpx;
         margin-top: 40rpx;
-        
+        margin-bottom: 40rpx;
       }
     }
     .bottom{
@@ -49,9 +48,10 @@
   view.welcome-page
     view.top
       image.title(src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/auth-title.png" mode="aspectFit")
-      input.input(bindinput="bindCardnum" type="number" placeholder="一卡通号" placeholder-style="font-size:40rpx; line-height:40rpx; color:#888; text-align:center; font-weight:bold;")
-      input.input(bindinput="bindPassword" confirm-type="done" password="true" placeholder="统一身份认证密码"  placeholder-style="font-size:40rpx; line-height:20rpx; color:#888;text-align:center; font-weight:bold;")
-      image.button(@tap="auth" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/auth-button.png" mode="aspectFit")
+      //- input.input(bindinput="bindCardnum" type="number" placeholder="一卡通号" placeholder-style="font-size:40rpx; line-height:40rpx; color:#888; text-align:center; font-weight:bold;")
+      //- input.input(bindinput="bindPassword" confirm-type="done" password="true" placeholder="统一身份认证密码"  placeholder-style="font-size:40rpx; line-height:20rpx; color:#888;text-align:center; font-weight:bold;")
+      navigator(target="miniProgram" app-id="wxaef6d2413690047f" path="pages/index" extra-data="force=true")
+        image.button(src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/auth-button.png" mode="aspectFit")
     view.bottom
       image.info(src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/auth-bottom.png" mode="aspectFit")
 </template>

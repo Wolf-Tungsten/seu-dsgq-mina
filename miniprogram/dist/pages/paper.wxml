@@ -12,7 +12,7 @@
       <image wx:if="{{hasPrev}}" bindtap="prev" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/paper-pre.png" mode="aspectFit"/>
       <image wx:if="{{hasNext}}" bindtap="next" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/paper-next.png" mode="aspectFit"/>
     </view>
-    <image class="submit" wx:if="{{canSubmit}}" bindtap="submit" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/paper-submit.png" mode="aspectFit"/>
+    <image class="submit" bindtap="submit" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/paper-submit.png" mode="aspectFit"/>
     <image class="background" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/paper-bottom.png" mode="aspectFit"/>
   </view>
 </view>

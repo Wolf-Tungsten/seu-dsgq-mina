@@ -4,7 +4,8 @@
   <block wx:for="{{quiz}}" wx:for-index="index" wx:for-item="item" wx:key="key">
     <view class="panel">
       <text class="question">【{{item.answer.length > 1 ? '多选' : '单选'}}】{{item.question}}</text>
-      <text class="correct">回答{{item.correct ? "正确" : "错误"}}：</text>
+      <text class="correct"  wx:if="{{item.checked}}">回答{{item.correct ? "正确" : "错误"}}：</text>
+      <text class="correct" wx:else>您没有作答，正确答案是：</text>
       <text class="answer {{item.checkA ? 'check-answer' : ''}} {{item.answerA ? 'correct-answer' : ''}}">A.{{item.optionA}}</text>
       <text class="answer {{item.checkB ? 'check-answer' : ''}} {{item.answerB ? 'correct-answer' : ''}}">B.{{item.optionB}}</text>
       <text class="answer {{item.checkC ? 'check-answer' : ''}} {{item.answerC ? 'correct-answer' : ''}}">C.{{item.optionC}}</text>

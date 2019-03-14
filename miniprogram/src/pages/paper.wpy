@@ -79,7 +79,7 @@
         view.button-box
             image(wx:if="{{hasPrev}}" @tap="prev" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/paper-pre.png" mode="aspectFit")
             image(wx:if="{{hasNext}}" @tap="next" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/paper-next.png" mode="aspectFit")
-        image.submit(wx:if="{{canSubmit}}" @tap="submit" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/paper-submit.png" mode="aspectFit")
+        image.submit( @tap="submit" src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/paper-submit.png" mode="aspectFit")
         image.background(src="cloud://seu-dsgq-0.7365-seu-dsgq-0/resources/paper-bottom.png" mode="aspectFit")
 </template>
 
@@ -183,7 +183,31 @@
         }
     }
 
-    async submit() {
+    async submit(timeout) {
+        if(!timeout){
+            // 如果非超时提交
+            let uncheckedList = []
+            this.quiz.forEach((v, i) => {
+                if(!v.checked){
+                    uncheckedList.push(i+1)
+                }
+            })
+            if(uncheckedList.length > 0){
+                wx.showModal({
+                    title: '提示',
+                    content: `题目【${uncheckedList.join('】、【')}】还没有作答，请完整作答后再提交哦！`,
+                    showCancel: false,
+                    success(res) {
+                        if (res.confirm) {
+                        console.log('用户点击确定')
+                        } else if (res.cancel) {
+                        console.log('用户点击取消')
+                        }
+                    }
+                })
+                return
+            }
+        }
         if(!this.submitted){
                 console.log('提交')
                 this.submitted = true
@@ -246,7 +270,7 @@
                 this.remainTimeText = `${minute < 10 ? '0' : ''}${minute}:${second < 10?'0':''}${second}`
                 if (this.remainTime <= 0) {
                     this.$apply()
-                    this.submit()
+                    this.submit(true)
                     console.log('时间到了') //TODO
                     this.remainTimeText = '时间到！'
                     clearInterval(this.timer)

@@ -29,7 +29,8 @@ export default class extends wepy.app {
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: 'WeChat',
       navigationBarTextStyle: 'black'
-    }
+    },
+    navigateToMiniProgramAppIdList: ["wxaef6d2413690047f"]
   }
 
   globalData = {
@@ -42,13 +43,35 @@ export default class extends wepy.app {
   }
 
   onLaunch() {
-   wx.cloud.init({
-      env: 'seu-dsgq-0',
-      traceUser: true
-  })
+    wx.cloud.init({
+        env: 'seu-dsgq-0',
+        traceUser: true
+    })
   }
 
-  onShow() {
+  onShow(obj) {
+    console.log(obj)
+    if(obj.scene === 1038){
+      // 对接统一身份认证小程序
+      if( obj.referrerInfo && obj.referrerInfo.extraData && obj.referrerInfo.appId === 'wxaef6d2413690047f') {
+        let {cardnum, name, identity} = obj.referrerInfo.extraData;
+        (async() => {
+          let result = await wx.cloud.callFunction({
+                name:'idsAuth',
+                data:{
+                    cardnum,
+                    name,
+                    identity
+                }
+            })
+            wx.setStorageSync("name", result.result.result.name)
+            wx.reLaunch({url:'/pages/rule'}) 
+        })()
+      } else {
+        // 没有完成认证，baby one more time
+        wx.reLaunch({url:'/pages/auth'}) 
+      }
+    }
     wx.reLaunch({url:'/pages/welcome'})
   }
 

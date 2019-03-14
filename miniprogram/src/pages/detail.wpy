@@ -58,7 +58,8 @@
     repeat(for="{{quiz}}" item="item")
         view.panel
             text.question 【{{item.answer.length > 1 ? '多选' : '单选'}}】{{item.question}}
-            text.correct 回答{{item.correct ? "正确" : "错误"}}：
+            text.correct(wx:if="{{item.checked}}") 回答{{item.correct ? "正确" : "错误"}}：
+            text.correct(wx:else) 您没有作答，正确答案是：
             text.answer(:class="{check-answer:item.checkA,correct-answer:item.answerA}") A.{{item.optionA}}
             text.answer(:class="{check-answer:item.checkB,correct-answer:item.answerB}") B.{{item.optionB}}
             text.answer(:class="{check-answer:item.checkC,correct-answer:item.answerC}") C.{{item.optionC}}

@@ -25,6 +25,7 @@
   width: 514rpx;
   height: 94rpx;
   margin-top: 40rpx;
+  margin-bottom: 40rpx;
 }
 .welcome-page .bottom {
   position: fixed;
