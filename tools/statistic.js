@@ -2,7 +2,7 @@ const xlsx = require('node-xlsx').default
 const fs = require('fs')
 
 let nameList = xlsx.parse('/Users/wolf_tungsten/Documents/党史国情知识竞赛小程序/本科生党员1.XLS')
-let rawResult = fs.readFileSync('/Users/wolf_tungsten/Documents/党史国情知识竞赛小程序/第一轮结果.json')
+let rawResult = fs.readFileSync('/Users/wolf_tungsten/Documents/党史国情知识竞赛小程序/第一轮结果+电子.json')
 
 rawResult = '' + rawResult
 rawResult =  rawResult.split('\n')
@@ -61,5 +61,5 @@ let output = attendencyList.map(k => {
 
 output = output.join('\n')
 
-fs.writeFileSync('第一轮结果.csv', output)
+fs.writeFileSync('第一轮结果+电子.csv', output)
 console.log(output)
