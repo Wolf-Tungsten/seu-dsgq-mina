@@ -43,23 +43,25 @@ result.forEach( r => {
     collegeMap[info[4]].recordList.push(r)
 })
 
-let attendencyList = []
-Object.keys(collegeMap).forEach( c => {
-    collegeMap[c].count = collegeMap[c].recordList.length
-    attendencyList.push({name:c, amount:collegeMap[c].amount, count:collegeMap[c].count})
-})
+console.log(collegeMap['物理学院党委'].recordList.map(l => {return `${l.name} - ${l.score}`}))
 
-console.log(attendencyList)
+// let attendencyList = []
+// Object.keys(collegeMap).forEach( c => {
+//     collegeMap[c].count = collegeMap[c].recordList.length
+//     attendencyList.push({name:c, amount:collegeMap[c].amount, count:collegeMap[c].count})
+// })
 
-attendencyList.sort((a, b) => {
-    return b.count/b.amount - a.count/a.amount
-})
+// console.log(attendencyList)
 
-let output = attendencyList.map(k => {
-    return `${k.name},${k.amount},${k.count},${k.count/k.amount}`
-})
+// attendencyList.sort((a, b) => {
+//     return b.count/b.amount - a.count/a.amount
+// })
 
-output = output.join('\n')
+// let output = attendencyList.map(k => {
+//     return `${k.name},${k.amount},${k.count},${k.count/k.amount}`
+// })
 
-fs.writeFileSync('第一轮结果+电子.csv', output)
-console.log(output)
+// output = output.join('\n')
+
+// // fs.writeFileSync('第一轮结果+电子.csv', output)
+// console.log(output)
