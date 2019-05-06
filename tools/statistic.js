@@ -2,7 +2,7 @@ const xlsx = require('node-xlsx').default
 const fs = require('fs')
 
 let nameList = xlsx.parse('/Users/wolf_tungsten/Documents/党史国情知识竞赛小程序/本科生党员1.XLS')
-let rawResult = fs.readFileSync('/Users/wolf_tungsten/Documents/党史国情知识竞赛小程序/第一轮结果+电子.json')
+let rawResult = fs.readFileSync('/Users/wolf_tungsten/Documents/党史国情知识竞赛小程序/第二轮结果.json')
 
 rawResult = '' + rawResult
 rawResult =  rawResult.split('\n')
@@ -43,25 +43,24 @@ result.forEach( r => {
     collegeMap[info[4]].recordList.push(r)
 })
 
-console.log(collegeMap['物理学院党委'].recordList.map(l => {return `${l.name} - ${l.score}`}))
 
-// let attendencyList = []
-// Object.keys(collegeMap).forEach( c => {
-//     collegeMap[c].count = collegeMap[c].recordList.length
-//     attendencyList.push({name:c, amount:collegeMap[c].amount, count:collegeMap[c].count})
-// })
+let attendencyList = []
+Object.keys(collegeMap).forEach( c => {
+    collegeMap[c].count = collegeMap[c].recordList.length
+    attendencyList.push({name:c, amount:collegeMap[c].amount, count:collegeMap[c].count})
+})
 
-// console.log(attendencyList)
+console.log(attendencyList)
 
-// attendencyList.sort((a, b) => {
-//     return b.count/b.amount - a.count/a.amount
-// })
+attendencyList.sort((a, b) => {
+    return b.count/b.amount - a.count/a.amount
+})
 
-// let output = attendencyList.map(k => {
-//     return `${k.name},${k.amount},${k.count},${k.count/k.amount}`
-// })
+let output = attendencyList.map(k => {
+    return `${k.name},${k.amount},${k.count},${k.count/k.amount}`
+})
 
-// output = output.join('\n')
+output = output.join('\n')
 
-// // fs.writeFileSync('第一轮结果+电子.csv', output)
-// console.log(output)
+fs.writeFileSync('第二轮结果统计.csv', output)
+console.log(output)
